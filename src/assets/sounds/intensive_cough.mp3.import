@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/intensive_cough.mp3-1ce43e023222033b90d22130ab03149b.mp3str"
+
+[deps]
+
+source_file="res://src/assets/sounds/intensive_cough.mp3"
+dest_files=[ "res://.import/intensive_cough.mp3-1ce43e023222033b90d22130ab03149b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
