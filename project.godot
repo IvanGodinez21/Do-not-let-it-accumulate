@@ -14,6 +14,10 @@ config/name="Don't let it accumulate!"
 run/main_scene="res://src/scenes/MainMenu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Resources="*res://src/scripts/Resources.gd"
+
 [display]
 
 window/stretch/mode="2d"

@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/assets/fonts/Indie_Flower/IndieFlower-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://src/assets/sheets/greenTrashBag.png" type="Texture" id=2]
+[ext_resource path="res://src/assets/sheets/blueTrashBag.png" type="Texture" id=3]
+[ext_resource path="res://src/assets/sheets/kenney_simplifiedplatformer/PNG/Items/platformPack_item017.png" type="Texture" id=4]
+[ext_resource path="res://src/scripts/lifeCounter.gd" type="Script" id=5]
+[ext_resource path="res://src/assets/sheets/kenney_simplifiedplatformer/PNG/Items/platformPack_item002.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=5]
+size = 30
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="lifeCounter" type="Label" parent="."]
+margin_left = 64.0
+margin_right = 128.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.639216, 0.960784, 0.117647, 1 )
+custom_colors/font_color_shadow = Color( 0.176471, 0.384314, 0.364706, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "--"
+align = 1
+valign = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="lifeCounter"]
+position = Vector2( -32, 32 )
+texture = ExtResource( 4 )
+
+[node name="greenTrashBagsCollected" type="Label" parent="."]
+margin_left = 960.0
+margin_right = 1024.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.639216, 0.960784, 0.117647, 1 )
+custom_colors/font_color_shadow = Color( 0.176471, 0.384314, 0.364706, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "--"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="greenTrashBagsCollected"]
+position = Vector2( -32, 32 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 2 )
+
+[node name="blueTrashBagsCollected" type="Label" parent="."]
+margin_left = 960.0
+margin_top = 64.0
+margin_right = 1024.0
+margin_bottom = 128.0
+custom_colors/font_color = Color( 0.639216, 0.960784, 0.117647, 1 )
+custom_colors/font_color_shadow = Color( 0.176471, 0.384314, 0.364706, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "--"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="blueTrashBagsCollected"]
+position = Vector2( -32, 32 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 3 )
+
+[node name="scorePoints" type="Label" parent="."]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 128.0
+margin_bottom = 128.0
+custom_colors/font_color = Color( 0.639216, 0.960784, 0.117647, 1 )
+custom_colors/font_color_shadow = Color( 0.176471, 0.384314, 0.364706, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "--"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="scorePoints"]
+position = Vector2( -32, 32 )
+texture = ExtResource( 6 )

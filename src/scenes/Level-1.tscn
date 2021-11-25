@@ -6,7 +6,7 @@
 [ext_resource path="res://src/scenes/greenTrashCan.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/scenes/blueTrashCan.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/scripts/Level-1.gd" type="Script" id=6]
-[ext_resource path="res://src/scenes/noxiousGas.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/scenes/HUD.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Curve2D" id=4]
 _data = {
@@ -93,7 +93,6 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 
 [node name="Level-1" type="Node2D"]
 script = ExtResource( 6 )
-mob_scene = ExtResource( 7 )
 
 [node name="blueTrashCan" parent="." instance=ExtResource( 5 )]
 position = Vector2( 863, 555 )
@@ -104,6 +103,11 @@ position = Vector2( 160, 555 )
 scale = Vector2( 0.3, 0.3 )
 
 [node name="MobSpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="CollectibleItemSpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
 autostart = true
 
 [node name="MobPath" type="Path2D" parent="."]
@@ -118,8 +122,12 @@ position = Vector2( 512, 384 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
+collision_layer = 3
+collision_mask = 3
 format = 1
 tile_data = PoolIntArray( -1, 2, 0, -65536, 2, 0, -65535, 2, 0, -65534, 2, 0, -65533, 2, 0, -65532, 2, 0, -65531, 2, 0, -65530, 2, 0, -65529, 2, 0, -65528, 2, 0, -65527, 2, 0, -65526, 2, 0, -65525, 2, 0, -65524, 2, 0, -65523, 2, 0, -65522, 2, 0, -65521, 2, 0, -65520, 2, 0, 65535, 1, 0, 16, 1, 0, 131071, 1, 0, 65552, 1, 0, 196607, 1, 0, 131088, 1, 0, 262143, 1, 0, 196624, 1, 0, 327679, 1, 0, 262160, 1, 0, 393215, 1, 0, 327696, 1, 0, 458751, 1, 0, 393232, 1, 0, 524287, 1, 0, 458768, 1, 0, 589823, 1, 0, 524304, 1, 0, 655359, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0, 589840, 0, 0 )
+
+[node name="HUD" parent="." instance=ExtResource( 7 )]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -130,3 +138,5 @@ position = Vector2( 512, 407 )
 texture = ExtResource( 3 )
 
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_MobSpawnTimer_timeout"]
+[connection signal="timeout" from="CollectibleItemSpawnTimer" to="." method="_on_CollectibleItemSpawnTimer_timeout"]
+[connection signal="playerHit" from="player" to="player" method="_on_player_playerHit"]
