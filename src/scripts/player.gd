@@ -6,13 +6,14 @@ var blueTrashBags = Resources.blueTrashBags
 var badPoints = 10
 var maxBags = 3
 
-const SPEED = 450
+const SPEED = 500
 const FLOOR = Vector2(0, -1)
-const GRAVITY = 16
-const JUMP_HEIGHT = 1400
+const GRAVITY = 14
+const JUMP_HEIGHT = 1500
 onready var motion = Vector2.ZERO
 
 signal playerHit
+signal gameOver
 signal greenTrashCollected
 signal blueTrashCollected
 
@@ -32,9 +33,6 @@ func respawn():
 	position.x = 512
 	position.y = 550
 	start(position)
-
-func displayFail():
-	print("GG")
 
 func get_axis() -> Vector2:
 	var axis = Vector2.ZERO
@@ -80,15 +78,16 @@ func _on_player_playerHit():
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 	Resources.life -= 1
 	get_node("../HUD/lifeCounter").text = str("x", Resources.life)
-	if ($HurtSound.playing == false):
-		$HurtSound.play()
 	if (Resources.life > 0):
+		if ($HurtSound.playing == false):
+			$HurtSound.play()
 		respawn()
 	else:
-		displayFail()
+		if ($DeathSound.playing == false):
+			$DeathSound.play()
+		emit_signal("gameOver", "You lose all your health points")
 
 func _on_Area2D_body_entered(body):
-	print(body)
 	if "noxiousGas" in body.name:
 		emit_signal("playerHit")
 	elif "greenTrashBag" in body.name:
@@ -96,10 +95,10 @@ func _on_Area2D_body_entered(body):
 		if body.is_visible_in_tree():
 			if (Resources.greenTrashBags < maxBags):
 				if (Resources.blueTrashBags > 0):
-					Resources.greenTrashBags = 0
+					Resources.greenTrashBags = 1
 					Resources.blueTrashBags = 0
 					Resources.score -= badPoints
-					get_node("../HUD/greenTrashBagsCollected").text = str("--")
+					get_node("../HUD/greenTrashBagsCollected").text = str("x", Resources.greenTrashBags)
 					get_node("../HUD/blueTrashBagsCollected").text = str("--")
 					get_node("../HUD/scorePoints").text = str(Resources.score)
 				else:
@@ -119,10 +118,10 @@ func _on_Area2D_body_entered(body):
 		if body.is_visible_in_tree():
 			if (Resources.blueTrashBags < maxBags):
 				if (Resources.greenTrashBags > 0):
-					Resources.blueTrashBags = 0
+					Resources.blueTrashBags = 1
 					Resources.greenTrashBags = 0
 					Resources.score -= badPoints
-					get_node("../HUD/blueTrashBagsCollected").text = str("--")
+					get_node("../HUD/blueTrashBagsCollected").text = str("x", Resources.blueTrashBags)
 					get_node("../HUD/greenTrashBagsCollected").text = str("--")
 					get_node("../HUD/scorePoints").text = str(Resources.score)
 				else:

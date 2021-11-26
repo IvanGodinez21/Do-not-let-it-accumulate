@@ -1,10 +1,13 @@
 extends Node2D
 
+var isOnGameOver = false
+
 var noxiousGas = preload("res://src/scenes/noxiousGas.tscn")
 var greenTrashBag = preload("res://src/scenes/greenTrashBag.tscn")
 var blueTrashBag = preload("res://src/scenes/blueTrashBag.tscn")
 
 func _ready():
+	Resources.maxAccumulatedTrash = 0
 	randomize()
 
 func _on_MobSpawnTimer_timeout():
@@ -42,3 +45,17 @@ func _on_CollectibleItemSpawnTimer_timeout():
 	
 	var velocity = Vector2(rand_range(collectibleItem.min_speed, collectibleItem.max_speed), 0)
 	collectibleItem.linear_velocity = velocity.rotated(direction)
+
+func _on_gameOver(reason):
+	if isOnGameOver == false:
+		isOnGameOver = true
+		print("Game Over")
+		$MobSpawnTimer.stop()
+		$CollectibleItemSpawnTimer.stop()
+		get_node("./GameOver/gameOverReason").text = str(reason)
+		yield(get_tree().create_timer(2.0), "timeout")
+		$player.hide()
+		$player/CollisionShape2D.set_deferred("disabled", true)
+		$player/Area2D/CollisionShape2D.set_deferred("disabled", true)
+		$GameOver.show()
+	

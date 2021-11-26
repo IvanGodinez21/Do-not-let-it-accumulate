@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/assets/sheets/kenney_platformerpack_industrial/PNG/Retina/platformIndustrial_090.png" type="Texture" id=1]
 [ext_resource path="res://src/assets/sounds/kenney_rpgaudio/Audio/metalPot3.ogg" type="AudioStream" id=2]
@@ -15,7 +15,12 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 70 )
 
-[node name="blueTrashCan" type="Area2D"]
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 50, 69.5 )
+
+[node name="blueTrashCan" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -24,7 +29,14 @@ frames = SubResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, -0.5 )
+shape = SubResource( 3 )
+
 [node name="depositSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
+volume_db = 5.0
 
-[connection signal="body_entered" from="." to="." method="_on_blueTrashCan_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

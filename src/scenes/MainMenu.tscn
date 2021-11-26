@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/scripts/startButton.gd" type="Script" id=1]
 [ext_resource path="res://src/assets/fonts/Indie_Flower/IndieFlower-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://src/assets/sheets/background-elements-redux-fix/Backgrounds/backgroundColorForest.png" type="Texture" id=3]
+[ext_resource path="res://src/scripts/helpButton.gd" type="Script" id=4]
+[ext_resource path="res://src/assets/sheets/kenney_platformerpack_industrial/PNG/Retina/platformIndustrial_029.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -13,6 +15,11 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 50
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 14
 use_filter = true
 font_data = ExtResource( 2 )
 
@@ -43,10 +50,10 @@ __meta__ = {
 }
 
 [node name="startButton" type="Button" parent="."]
-margin_left = 335.0
-margin_top = 311.0
-margin_right = 661.0
-margin_bottom = 380.0
+margin_left = 320.0
+margin_top = 304.0
+margin_right = 704.0
+margin_bottom = 384.0
 custom_fonts/font = SubResource( 2 )
 text = "Start"
 script = ExtResource( 1 )
@@ -54,4 +61,48 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="helpButton" type="Button" parent="."]
+margin_left = 320.0
+margin_top = 432.0
+margin_right = 704.0
+margin_bottom = 512.0
+custom_fonts/font = SubResource( 2 )
+text = "Start"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Help" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Help"]
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 896.0
+margin_bottom = 512.0
+texture = ExtResource( 5 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rules" type="Label" parent="Help"]
+margin_left = 238.0
+margin_top = 320.0
+margin_right = 786.0
+margin_bottom = 456.0
+custom_colors/font_color = Color( 0.639216, 0.960784, 0.117647, 1 )
+custom_colors/font_color_shadow = Color( 0.176471, 0.384314, 0.364706, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "- All gases are noxious, be care
+- Don't accumulate more than 4 trash bags in the ground
+- You can only grab 3 bags of one type of trash
+- Combining both trash types, will make you lose 10 points and lose all current the bags
+"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="startButton" to="startButton" method="_on_startButton_pressed"]
+[connection signal="pressed" from="helpButton" to="helpButton" method="_on_helpButton_pressed"]
