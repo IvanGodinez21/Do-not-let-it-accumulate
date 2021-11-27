@@ -1,10 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=26 format=2]
 
-[ext_resource path="res://src/scripts/startButton.gd" type="Script" id=1]
+[ext_resource path="res://src/assets/sheets/onscreencontrols/Sprites/transparentDark/transparentDark24.png" type="Texture" id=1]
 [ext_resource path="res://src/assets/fonts/Indie_Flower/IndieFlower-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://src/assets/sheets/background-elements-redux-fix/Backgrounds/backgroundColorForest.png" type="Texture" id=3]
-[ext_resource path="res://src/scripts/helpButton.gd" type="Script" id=4]
-[ext_resource path="res://src/assets/sheets/kenney_platformerpack_industrial/PNG/Retina/platformIndustrial_029.png" type="Texture" id=5]
+[ext_resource path="res://src/scripts/MainMenu.gd" type="Script" id=4]
+[ext_resource path="res://src/assets/sheets/wood-sign.jpg" type="Texture" id=5]
+[ext_resource path="res://src/assets/sheets/onscreencontrols/Sprites/shadedDark/shadedDark26.png" type="Texture" id=6]
+[ext_resource path="res://src/assets/sheets/onscreencontrols/Sprites/transparentDark/transparentDark22.png" type="Texture" id=7]
+[ext_resource path="res://src/assets/sheets/onscreencontrols/Sprites/shadedDark/shadedDark24.png" type="Texture" id=8]
+[ext_resource path="res://src/assets/sheets/onscreencontrols/Sprites/shadedDark/shadedDark25.png" type="Texture" id=9]
+[ext_resource path="res://src/assets/sheets/onscreencontrols/Sprites/transparentDark/transparentDark23.png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -18,12 +23,70 @@ size = 50
 use_filter = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=3]
-size = 14
+[sub_resource type="DynamicFont" id=4]
+size = 60
 use_filter = true
 font_data = ExtResource( 2 )
 
+[sub_resource type="DynamicFont" id=3]
+size = 20
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 60
+font_data = ExtResource( 2 )
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
+[sub_resource type="DynamicFont" id=15]
+size = 40
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
+[sub_resource type="SpriteFrames" id=14]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
 [node name="MainMenu" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_top = -119.0
@@ -51,31 +114,52 @@ __meta__ = {
 
 [node name="startButton" type="Button" parent="."]
 margin_left = 320.0
-margin_top = 304.0
+margin_top = 240.0
 margin_right = 704.0
-margin_bottom = 384.0
+margin_bottom = 320.0
 custom_fonts/font = SubResource( 2 )
 text = "Start"
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="helpButton" type="Button" parent="."]
 margin_left = 320.0
-margin_top = 432.0
-margin_right = 704.0
-margin_bottom = 512.0
+margin_top = 368.0
+margin_right = 500.0
+margin_bottom = 448.0
 custom_fonts/font = SubResource( 2 )
-text = "Start"
-script = ExtResource( 4 )
+text = "Rules"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Help" type="Node2D" parent="."]
+[node name="controlsButton" type="Button" parent="."]
+margin_left = 524.0
+margin_top = 368.0
+margin_right = 704.0
+margin_bottom = 448.0
+custom_fonts/font = SubResource( 2 )
+text = "Controls"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="TextureRect" type="TextureRect" parent="Help"]
+[node name="exitButton" type="Button" parent="."]
+margin_left = 320.0
+margin_top = 496.0
+margin_right = 704.0
+margin_bottom = 576.0
+custom_fonts/font = SubResource( 2 )
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rules" type="Node2D" parent="."]
+visible = false
+
+[node name="singTexture" type="TextureRect" parent="Rules"]
 margin_left = 128.0
 margin_top = 128.0
 margin_right = 896.0
@@ -86,16 +170,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="rules" type="Label" parent="Help"]
-margin_left = 238.0
-margin_top = 320.0
-margin_right = 786.0
-margin_bottom = 456.0
+[node name="rulesTitle" type="Label" parent="Rules"]
+margin_left = 192.0
+margin_top = 192.0
+margin_right = 832.0
+margin_bottom = 281.0
+custom_colors/font_color = Color( 0.639216, 0.960784, 0.117647, 1 )
+custom_colors/font_color_shadow = Color( 0.176471, 0.384314, 0.364706, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Rules"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rulesList" type="Label" parent="Rules"]
+margin_left = 136.0
+margin_top = 300.0
+margin_right = 889.0
+margin_bottom = 512.0
 custom_colors/font_color = Color( 0.639216, 0.960784, 0.117647, 1 )
 custom_colors/font_color_shadow = Color( 0.176471, 0.384314, 0.364706, 1 )
 custom_fonts/font = SubResource( 3 )
-text = "- All gases are noxious, be care
+text = "- Get 1000 points to win
+- All gases are noxious, be care
 - Don't accumulate more than 4 trash bags in the ground
+- You have to deposit the trash by getting near to the correct trash can to get 30 points
 - You can only grab 3 bags of one type of trash
 - Combining both trash types, will make you lose 10 points and lose all current the bags
 "
@@ -104,5 +205,143 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="startButton" to="startButton" method="_on_startButton_pressed"]
-[connection signal="pressed" from="helpButton" to="helpButton" method="_on_helpButton_pressed"]
+[node name="rulesExitButton" type="Button" parent="Rules"]
+margin_left = 832.0
+margin_top = 128.0
+margin_right = 896.0
+margin_bottom = 192.0
+custom_colors/font_color_focus = Color( 1, 0.109804, 0.109804, 1 )
+custom_colors/font_color = Color( 1, 0.109804, 0.109804, 1 )
+custom_colors/font_color_hover = Color( 1, 0.364706, 0.364706, 1 )
+custom_colors/font_color_pressed = Color( 0.670588, 0, 0, 1 )
+custom_fonts/font = SubResource( 10 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
+text = "X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Controls" type="Node2D" parent="."]
+visible = false
+
+[node name="singTexture" type="TextureRect" parent="Controls"]
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 896.0
+margin_bottom = 512.0
+texture = ExtResource( 5 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="controlsTitle" type="Label" parent="Controls"]
+margin_left = 192.0
+margin_top = 192.0
+margin_right = 832.0
+margin_bottom = 281.0
+custom_colors/font_color = Color( 0.639216, 0.960784, 0.117647, 1 )
+custom_colors/font_color_shadow = Color( 0.176471, 0.384314, 0.364706, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Controls"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="controlsExitButton" type="Button" parent="Controls"]
+margin_left = 832.0
+margin_top = 128.0
+margin_right = 896.0
+margin_bottom = 192.0
+custom_colors/font_color_focus = Color( 1, 0.109804, 0.109804, 1 )
+custom_colors/font_color = Color( 1, 0.109804, 0.109804, 1 )
+custom_colors/font_color_hover = Color( 1, 0.364706, 0.364706, 1 )
+custom_colors/font_color_pressed = Color( 0.670588, 0, 0, 1 )
+custom_fonts/font = SubResource( 10 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
+text = "X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keyUp" type="AnimatedSprite" parent="Controls"]
+position = Vector2( 512, 352 )
+scale = Vector2( 0.8, 0.8 )
+frames = SubResource( 12 )
+playing = true
+
+[node name="textUp" type="Label" parent="Controls/keyUp"]
+margin_left = -40.0
+margin_top = -120.0
+margin_right = 40.0
+margin_bottom = -40.0001
+custom_colors/font_color = Color( 0.176471, 0.384314, 0.364706, 1 )
+custom_colors/font_color_shadow = Color( 0.639216, 0.960784, 0.117647, 1 )
+custom_fonts/font = SubResource( 15 )
+text = "Jump"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keyLeft" type="AnimatedSprite" parent="Controls"]
+position = Vector2( 448, 416 )
+scale = Vector2( 0.8, 0.8 )
+frames = SubResource( 13 )
+frame = 1
+playing = true
+
+[node name="textLeft" type="Label" parent="Controls/keyLeft"]
+margin_left = -120.0
+margin_top = -40.0
+margin_right = -40.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0.176471, 0.384314, 0.364706, 1 )
+custom_colors/font_color_shadow = Color( 0.639216, 0.960784, 0.117647, 1 )
+custom_fonts/font = SubResource( 15 )
+text = "Left"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keyRight" type="AnimatedSprite" parent="Controls"]
+position = Vector2( 576, 416 )
+scale = Vector2( 0.8, 0.8 )
+frames = SubResource( 14 )
+frame = 1
+playing = true
+
+[node name="textRight" type="Label" parent="Controls/keyRight"]
+margin_left = 40.0
+margin_top = -40.0001
+margin_right = 120.0
+margin_bottom = 39.9999
+custom_colors/font_color = Color( 0.176471, 0.384314, 0.364706, 1 )
+custom_colors/font_color_shadow = Color( 0.639216, 0.960784, 0.117647, 1 )
+custom_fonts/font = SubResource( 15 )
+text = "Right"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="startButton" to="." method="_on_startButton_pressed"]
+[connection signal="pressed" from="helpButton" to="." method="_on_helpButton_pressed"]
+[connection signal="pressed" from="controlsButton" to="." method="_on_controlsButton_pressed"]
+[connection signal="pressed" from="exitButton" to="." method="_on_exitButton_pressed"]
+[connection signal="pressed" from="Rules/rulesExitButton" to="." method="_on_rulesExitButton_pressed"]
+[connection signal="pressed" from="Controls/controlsExitButton" to="." method="_on_controlsExitButton_pressed"]

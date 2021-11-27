@@ -58,4 +58,3 @@ func _on_gameOver(reason):
 		$player/CollisionShape2D.set_deferred("disabled", true)
 		$player/Area2D/CollisionShape2D.set_deferred("disabled", true)
 		$GameOver.show()
-	
