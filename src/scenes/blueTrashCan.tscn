@@ -38,5 +38,6 @@ shape = SubResource( 3 )
 [node name="depositSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
 volume_db = 5.0
+bus = "Trash"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

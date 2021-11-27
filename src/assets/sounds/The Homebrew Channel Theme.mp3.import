@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Homebrew Channel Theme.mp3-0a48c14b30807a667e48b1ba16d6de22.mp3str"
+
+[deps]
+
+source_file="res://src/assets/sounds/The Homebrew Channel Theme.mp3"
+dest_files=[ "res://.import/The Homebrew Channel Theme.mp3-0a48c14b30807a667e48b1ba16d6de22.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -105,18 +105,22 @@ shape = SubResource( 6 )
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
-volume_db = 10.0
+volume_db = 5.0
+bus = "Player"
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
 volume_db = -10.0
+bus = "Player"
 
 [node name="FootStepsSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 volume_db = -25.0
+bus = "Player"
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
 volume_db = -15.0
+bus = "Player"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

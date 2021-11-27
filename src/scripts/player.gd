@@ -3,8 +3,8 @@ extends KinematicBody2D
 var life = Resources.life
 var greenTrashBags = Resources.greenTrashBags
 var blueTrashBags = Resources.blueTrashBags
-var badPoints = 10
-var maxBags = 3
+var badPoints = Resources.badPoints
+var maxBags = Resources.maxBags
 
 export var move_speed = 400
 var velocity = Vector2.ZERO
@@ -21,7 +21,6 @@ signal gameOver
 signal greenTrashCollected
 signal blueTrashCollected
 
-
 func start(new_position):
 	position = new_position
 	show()
@@ -31,6 +30,11 @@ func start(new_position):
 	#$Area2D/CollisionShape2D.disabled = false
 	#$CollisionShape2D.disabled = false
 
+func respawn():
+	yield(get_tree().create_timer(1.5), "timeout")
+	position.x = 512
+	position.y = 550
+	start(position)
 
 func _physics_process(delta):
 	velocity.y += get_gravity() * delta
@@ -66,12 +70,6 @@ func get_input_velocity():
 				$FootStepsSound.play()
 	return horizontal
 
-func respawn():
-	yield(get_tree().create_timer(1.5), "timeout")
-	position.x = 512
-	position.y = 550
-	start(position)
-
 func _on_player_playerHit():
 	if !$CollisionShape2D.disabled && !$Area2D/CollisionShape2D.disabled:
 		hide()
@@ -91,49 +89,7 @@ func _on_player_playerHit():
 func _on_Area2D_body_entered(body):
 	if "noxiousGas" in body.name:
 		emit_signal("playerHit")
-	elif "greenTrashBag" in body.name:
-		#emit_signal("greenTrashCollected")
-		if body.is_visible_in_tree():
-			if (Resources.greenTrashBags < maxBags):
-				if (Resources.blueTrashBags > 0):
-					Resources.greenTrashBags = 1
-					Resources.blueTrashBags = 0
-					Resources.score -= badPoints
-					get_node("../HUD/greenTrashBagsCollected").text = str("x", Resources.greenTrashBags)
-					get_node("../HUD/blueTrashBagsCollected").text = str("--")
-					get_node("../HUD/scorePoints").text = str(Resources.score)
-				else:
-					Resources.greenTrashBags += 1
-					Resources.blueTrashBags = 0
-					get_node("../HUD/greenTrashBagsCollected").text = str("x", Resources.greenTrashBags)
-					get_node("../HUD/blueTrashBagsCollected").text = str("--")
-				if body.get_node("./CollectSound").playing == false:
-					body.get_node("./CollectSound").play()
-				body.hide()
-				body.get_node("./CollisionShape2D").set_deferred("disabled", true)
-				yield(get_tree().create_timer(2.0), "timeout")
-				if is_instance_valid(body):
-					body.queue_free()
-	elif "blueTrashBag" in body.name:
-		#emit_signal("blueTrashCollected")
-		if body.is_visible_in_tree():
-			if (Resources.blueTrashBags < maxBags):
-				if (Resources.greenTrashBags > 0):
-					Resources.blueTrashBags = 1
-					Resources.greenTrashBags = 0
-					Resources.score -= badPoints
-					get_node("../HUD/blueTrashBagsCollected").text = str("x", Resources.blueTrashBags)
-					get_node("../HUD/greenTrashBagsCollected").text = str("--")
-					get_node("../HUD/scorePoints").text = str(Resources.score)
-				else:
-					Resources.blueTrashBags += 1
-					Resources.greenTrashBags = 0
-					get_node("../HUD/blueTrashBagsCollected").text = str("x", Resources.blueTrashBags)
-					get_node("../HUD/greenTrashBagsCollected").text = str("--")
-				if body.get_node("./CollectSound").playing == false:
-					body.get_node("./CollectSound").play()
-				body.hide()
-				body.get_node("./CollisionShape2D").set_deferred("disabled", true)
-				yield(get_tree().create_timer(2.0), "timeout")
-				if is_instance_valid(body):
-					body.queue_free()
+	if "greenTrashBag" in body.name:
+		emit_signal("greenTrashCollected", body)
+	if "blueTrashBag" in body.name:
+		emit_signal("blueTrashCollected", body)

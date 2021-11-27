@@ -1,6 +1,9 @@
 extends Node2D
 
 var isOnGameOver = false
+var isOnGameFinish = false
+
+var gameFinishScene = preload("res://src/scenes/GameFinish.tscn")
 
 var noxiousGas = preload("res://src/scenes/noxiousGas.tscn")
 var greenTrashBag = preload("res://src/scenes/greenTrashBag.tscn")
@@ -58,3 +61,12 @@ func _on_gameOver(reason):
 		$player/CollisionShape2D.set_deferred("disabled", true)
 		$player/Area2D/CollisionShape2D.set_deferred("disabled", true)
 		$GameOver.show()
+
+func _on_gameFinish():
+	if isOnGameFinish == false:
+		isOnGameFinish = true
+		print("Game Finish")
+		if $Audio/gameFinishSound.playing == false:
+			$Audio/gameFinishSound.play()
+		yield(get_tree().create_timer(1.5), "timeout")
+		get_tree().change_scene_to(gameFinishScene)

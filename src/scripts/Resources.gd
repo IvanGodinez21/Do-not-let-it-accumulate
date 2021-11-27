@@ -7,5 +7,10 @@ var greenTrashBags = 0
 var blueTrashBags = 0
 var maxAccumulatedTrash = 0
 
+#Gameplay
+var scoreGoal = 100
+var maxBags = 3
+var badPoints = 10
+
 func _ready():
 	pass # Replace with function body.

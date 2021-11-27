@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 var extraPoints = 30
 
+signal gameFinish
+
 func _ready():
 	var greenTrashCan_types = $AnimatedSprite.frames.get_animation_names()
 	$AnimatedSprite.animation = greenTrashCan_types[randi() % greenTrashCan_types.size()]
@@ -17,3 +19,5 @@ func _on_Area2D_body_entered(body):
 				get_node("../HUD/scorePoints").text = str(Resources.score)
 				if $depositSound.playing == false:
 					$depositSound.play()
+				if Resources.score >= Resources.scoreGoal:
+					emit_signal("gameFinish")
