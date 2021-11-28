@@ -278,6 +278,7 @@ __meta__ = {
 position = Vector2( 512, 352 )
 scale = Vector2( 0.8, 0.8 )
 frames = SubResource( 12 )
+frame = 1
 playing = true
 
 [node name="textUp" type="Label" parent="Controls/keyUp"]
@@ -299,7 +300,6 @@ __meta__ = {
 position = Vector2( 448, 416 )
 scale = Vector2( 0.8, 0.8 )
 frames = SubResource( 13 )
-frame = 1
 playing = true
 
 [node name="textLeft" type="Label" parent="Controls/keyLeft"]
@@ -321,7 +321,6 @@ __meta__ = {
 position = Vector2( 576, 416 )
 scale = Vector2( 0.8, 0.8 )
 frames = SubResource( 14 )
-frame = 1
 playing = true
 
 [node name="textRight" type="Label" parent="Controls/keyRight"]
