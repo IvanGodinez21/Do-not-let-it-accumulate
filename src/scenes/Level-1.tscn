@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/scenes/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/scenes/Environment.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://src/scripts/tryAgainButton.gd" type="Script" id=10]
 [ext_resource path="res://src/assets/sounds/coin-sound-effect.mp3" type="AudioStream" id=11]
 [ext_resource path="res://src/assets/sounds/The Homebrew Channel Theme.mp3" type="AudioStream" id=12]
+[ext_resource path="res://src/scripts/mainMenuButton.gd" type="Script" id=13]
 
 [sub_resource type="Curve2D" id=4]
 _data = {
@@ -47,7 +48,7 @@ position = Vector2( 162, 548 )
 scale = Vector2( 0.4, 0.4 )
 
 [node name="MobSpawnTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.4
 autostart = true
 
 [node name="CollectibleItemSpawnTimer" type="Timer" parent="."]
@@ -102,12 +103,24 @@ __meta__ = {
 
 [node name="tryAgainButton" type="Button" parent="GameOver"]
 margin_left = 320.0
-margin_top = 311.0
+margin_top = 304.0
 margin_right = 704.0
-margin_bottom = 391.0
+margin_bottom = 384.0
 custom_fonts/font = SubResource( 6 )
 text = "Try again"
 script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="mainMenuButton" type="Button" parent="GameOver"]
+margin_left = 320.0
+margin_top = 432.0
+margin_right = 704.0
+margin_bottom = 512.0
+custom_fonts/font = SubResource( 6 )
+text = "Main menu"
+script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -128,6 +141,7 @@ bus = "Level"
 
 [node name="backgroundMusic" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 12 )
+volume_db = -10.0
 pitch_scale = 0.5
 autoplay = true
 bus = "Level"
@@ -140,3 +154,4 @@ bus = "Level"
 [connection signal="playerHit" from="player" to="player" method="_on_player_playerHit"]
 [connection signal="gameOver" from="Environment" to="." method="_on_gameOver"]
 [connection signal="pressed" from="GameOver/tryAgainButton" to="GameOver/tryAgainButton" method="_on_startButton_pressed"]
+[connection signal="pressed" from="GameOver/mainMenuButton" to="GameOver/mainMenuButton" method="_on_startButton_pressed"]

@@ -4,13 +4,12 @@ var mainMenuScene = load("res://src/scenes/MainMenu.tscn")
 var level1Scene = load("res://src/scenes/Level-1.tscn")
 
 func _ready():
-	pass
-
+	if $congratulationsSound.playing == false:
+		$congratulationsSound.play()
 
 func _on_mainMenuButton_pressed():
 	_reset()
 	get_tree().change_scene_to(mainMenuScene)
-
 
 func _on_playAgainButton_pressed():
 	_reset()

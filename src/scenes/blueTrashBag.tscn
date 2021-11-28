@@ -34,5 +34,6 @@ scale = Vector2( 1.9, 2.6 )
 [node name="CollectSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 volume_db = -10.0
+bus = "Trash"
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

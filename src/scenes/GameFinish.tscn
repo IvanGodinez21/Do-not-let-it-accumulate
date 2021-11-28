@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/assets/sheets/background-elements-redux-fix/Backgrounds/backgroundColorForest.png" type="Texture" id=1]
 [ext_resource path="res://src/assets/fonts/Indie_Flower/IndieFlower-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/assets/sounds/Happy_birthday_tf_12.wav" type="AudioStream" id=3]
 [ext_resource path="res://src/scripts/GameFinish.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
@@ -88,6 +89,10 @@ text = "Play again"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="congratulationsSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -25.0
 
 [connection signal="pressed" from="mainMenuButton" to="." method="_on_mainMenuButton_pressed"]
 [connection signal="pressed" from="playAgainButton" to="." method="_on_playAgainButton_pressed"]

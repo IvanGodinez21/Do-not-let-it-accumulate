@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Happy_birthday_tf_12.wav-b0a1e30c6728aef66629ebb0e7a4c82b.sample"
+
+[deps]
+
+source_file="res://src/assets/sounds/Happy_birthday_tf_12.wav"
+dest_files=[ "res://.import/Happy_birthday_tf_12.wav-b0a1e30c6728aef66629ebb0e7a4c82b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

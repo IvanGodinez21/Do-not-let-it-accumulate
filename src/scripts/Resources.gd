@@ -8,7 +8,7 @@ var blueTrashBags = 0
 var maxAccumulatedTrash = 0
 
 #Gameplay
-var scoreGoal = 100
+var scoreGoal = 1000
 var maxBags = 3
 var badPoints = 10
 
