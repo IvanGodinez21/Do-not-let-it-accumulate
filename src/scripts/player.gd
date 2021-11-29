@@ -25,8 +25,12 @@ func start(new_position):
 	position = new_position
 	show()
 	$CollisionShape2D.set_deferred("disabled", false)
-	yield(get_tree().create_timer(1.5), "timeout")
 	$Area2D/CollisionShape2D.set_deferred("disabled", false)
+	$Area2D.set_collision_layer_bit(1, true)
+	$Area2D.set_collision_mask_bit(1, true)
+	yield(get_tree().create_timer(1.5), "timeout")
+	$Area2D.set_collision_layer_bit(2, true)
+	$Area2D.set_collision_mask_bit(2, true)
 	#$Area2D/CollisionShape2D.disabled = false
 	#$CollisionShape2D.disabled = false
 
@@ -75,6 +79,10 @@ func _on_player_playerHit():
 		hide()
 		$CollisionShape2D.set_deferred("disabled", true)
 		$Area2D/CollisionShape2D.set_deferred("disabled", true)
+		$Area2D.set_collision_layer_bit(2, false)
+		$Area2D.set_collision_layer_bit(1, false)
+		$Area2D.set_collision_mask_bit(2, false)
+		$Area2D.set_collision_mask_bit(1, false)
 		Resources.life -= 1
 		get_node("../HUD/lifeCounter").text = str("x", Resources.life)
 		if (Resources.life > 0):
