@@ -17,7 +17,7 @@ func _on_MobSpawnTimer_timeout():
 	var mob_spawn_location = $MobPath/MobSpawnLocation
 	mob_spawn_location.unit_offset = rand_range(0.0, 0.287)
 	var mob = noxiousGas.instance()
-	add_child(mob)
+	$MobPath.add_child(mob)
 	
 	mob.position = mob_spawn_location.position
 	
@@ -38,7 +38,7 @@ func _on_CollectibleItemSpawnTimer_timeout():
 			collectibleItem = greenTrashBag.instance()
 		2:
 			collectibleItem = blueTrashBag.instance()
-	add_child(collectibleItem)
+	$MobPath.add_child(collectibleItem)
 	
 	collectibleItem.position = collectibleItem_spawn_location.position
 	

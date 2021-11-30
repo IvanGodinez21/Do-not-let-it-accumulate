@@ -24,14 +24,14 @@ func _on_player_greenTrashCollected(body):
 					Resources.greenTrashBags = 1
 					Resources.blueTrashBags = 0
 					Resources.score -= badPoints
-					get_node("../HUD/greenTrashBagsCollected").text = str("x", Resources.greenTrashBags)
-					get_node("../HUD/blueTrashBagsCollected").text = str("--")
-					get_node("../HUD/scorePoints").text = str(Resources.score)
+					get_node("../../HUD/greenTrashBagsCollected").text = str("x", Resources.greenTrashBags)
+					get_node("../../HUD/blueTrashBagsCollected").text = str("--")
+					get_node("../../HUD/scorePoints").text = str(Resources.score)
 				else:
 					Resources.greenTrashBags += 1
 					Resources.blueTrashBags = 0
-					get_node("../HUD/greenTrashBagsCollected").text = str("x", Resources.greenTrashBags)
-					get_node("../HUD/blueTrashBagsCollected").text = str("--")
+					get_node("../../HUD/greenTrashBagsCollected").text = str("x", Resources.greenTrashBags)
+					get_node("../../HUD/blueTrashBagsCollected").text = str("--")
 				if body.get_node("./CollectSound").playing == false:
 					body.get_node("./CollectSound").play()
 				body.hide()
