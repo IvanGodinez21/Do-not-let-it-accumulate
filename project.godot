@@ -23,6 +23,7 @@ default_bus_layout="res://src/audioBus/default_bus_layout.tres"
 [autoload]
 
 Resources="*res://src/scripts/Resources.gd"
+Pause="*res://src/scenes/Pause.tscn"
 
 [display]
 
