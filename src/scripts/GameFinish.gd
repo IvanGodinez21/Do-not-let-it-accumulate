@@ -4,6 +4,7 @@ var mainMenuScene = load("res://src/scenes/MainMenu.tscn")
 var level1Scene = load("res://src/scenes/Level-1.tscn")
 
 func _ready():
+	$mainMenuButton.grab_focus()
 	if $congratulationsSound.playing == false:
 		$congratulationsSound.play()
 

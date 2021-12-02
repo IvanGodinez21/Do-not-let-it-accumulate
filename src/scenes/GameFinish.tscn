@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/assets/sheets/background-elements-redux-fix/Backgrounds/backgroundColorForest.png" type="Texture" id=1]
 [ext_resource path="res://src/assets/fonts/Indie_Flower/IndieFlower-Regular.ttf" type="DynamicFontData" id=2]
@@ -23,6 +23,18 @@ font_data = ExtResource( 2 )
 size = 50
 use_filter = true
 font_data = ExtResource( 2 )
+
+[sub_resource type="InputEventAction" id=4]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
+
+[sub_resource type="InputEventAction" id=6]
+action = "ui_restart"
+
+[sub_resource type="ShortCut" id=7]
+shortcut = SubResource( 6 )
 
 [node name="GameFinish" type="Node2D"]
 script = ExtResource( 4 )
@@ -73,7 +85,10 @@ margin_left = 192.0
 margin_top = 472.0
 margin_right = 448.0
 margin_bottom = 552.0
+focus_neighbour_left = NodePath("../playAgainButton")
+focus_neighbour_right = NodePath("../playAgainButton")
 custom_fonts/font = SubResource( 3 )
+shortcut = SubResource( 5 )
 text = "Main menu"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -84,7 +99,10 @@ margin_left = 576.0
 margin_top = 472.0
 margin_right = 832.0
 margin_bottom = 552.0
+focus_neighbour_left = NodePath("../mainMenuButton")
+focus_neighbour_right = NodePath("../mainMenuButton")
 custom_fonts/font = SubResource( 3 )
+shortcut = SubResource( 7 )
 text = "Play again"
 __meta__ = {
 "_edit_use_anchors_": false
