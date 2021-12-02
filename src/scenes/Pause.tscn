@@ -49,6 +49,7 @@ focus_neighbour_top = NodePath("../quitButton")
 focus_neighbour_right = NodePath("../restartButton")
 focus_neighbour_bottom = NodePath("../restartButton")
 custom_fonts/font = SubResource( 14 )
+shortcut_in_tooltip = false
 text = "Resume"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -64,6 +65,7 @@ focus_neighbour_top = NodePath("../resumeButton")
 focus_neighbour_right = NodePath("../quitButton")
 focus_neighbour_bottom = NodePath("../quitButton")
 custom_fonts/font = SubResource( 11 )
+shortcut_in_tooltip = false
 text = "Restart"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -79,6 +81,7 @@ focus_neighbour_top = NodePath("../resumeButton")
 focus_neighbour_right = NodePath("../resumeButton")
 focus_neighbour_bottom = NodePath("../resumeButton")
 custom_fonts/font = SubResource( 11 )
+shortcut_in_tooltip = false
 text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
