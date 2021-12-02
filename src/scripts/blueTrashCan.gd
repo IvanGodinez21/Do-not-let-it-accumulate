@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var extraPoints = 30
+var extraPoints = Resources.goodPoints
 
 signal gameFinish
 

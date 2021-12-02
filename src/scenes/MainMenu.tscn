@@ -216,9 +216,9 @@ custom_fonts/font = SubResource( 3 )
 text = "- Get 1000 points to win
 - All gases are noxious, be care
 - Don't accumulate more than 4 trash bags in the ground
-- You have to deposit the trash by getting near to the correct trash can to get 30 points
+- You have to deposit the trash by getting near to the correct trash can to get 60 points
 - You can only grab 3 bags of one type of trash
-- Combining both trash types, will make you lose 10 points and lose all current the bags
+- Combining both trash types, will make you lose 20 points and lose all current the bags
 "
 valign = 1
 __meta__ = {
@@ -298,6 +298,7 @@ __meta__ = {
 position = Vector2( 512, 352 )
 scale = Vector2( 0.8, 0.8 )
 frames = SubResource( 12 )
+frame = 1
 playing = true
 
 [node name="textUp" type="Label" parent="Controls/keyUp"]
@@ -319,6 +320,7 @@ __meta__ = {
 position = Vector2( 448, 416 )
 scale = Vector2( 0.8, 0.8 )
 frames = SubResource( 13 )
+frame = 1
 playing = true
 
 [node name="textLeft" type="Label" parent="Controls/keyLeft"]
@@ -340,6 +342,7 @@ __meta__ = {
 position = Vector2( 576, 416 )
 scale = Vector2( 0.8, 0.8 )
 frames = SubResource( 14 )
+frame = 1
 playing = true
 
 [node name="textRight" type="Label" parent="Controls/keyRight"]
