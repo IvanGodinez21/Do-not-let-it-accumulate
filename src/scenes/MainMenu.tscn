@@ -206,8 +206,8 @@ __meta__ = {
 }
 
 [node name="rulesList" type="Label" parent="Rules"]
-margin_left = 136.0
-margin_top = 300.0
+margin_left = 135.0
+margin_top = 251.0
 margin_right = 889.0
 margin_bottom = 512.0
 custom_colors/font_color = Color( 0.639216, 0.960784, 0.117647, 1 )
@@ -217,6 +217,7 @@ text = "- Get 1000 points to win
 - All gases are noxious, be care
 - Don't accumulate more than 4 trash bags in the ground
 - You have to deposit the trash by getting near to the correct trash can to get 60 points
+- To deposit, you must have 3 trash bags collected
 - You can only grab 3 bags of one type of trash
 - Combining both trash types, will make you lose 20 points and lose all current the bags
 "
