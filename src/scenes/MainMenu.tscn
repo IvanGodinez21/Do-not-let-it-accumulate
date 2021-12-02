@@ -298,7 +298,6 @@ __meta__ = {
 position = Vector2( 512, 352 )
 scale = Vector2( 0.8, 0.8 )
 frames = SubResource( 12 )
-frame = 1
 playing = true
 
 [node name="textUp" type="Label" parent="Controls/keyUp"]

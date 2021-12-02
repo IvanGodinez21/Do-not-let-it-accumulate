@@ -16,7 +16,10 @@ func _on_controlsButton_pressed():
 	$Controls.show()
 
 func _on_exitButton_pressed():
-	get_tree().quit()
+	if OS.has_feature("JavaScript"):
+		JavaScript.eval("window.close()")
+	else:
+		get_tree().quit()
 
 func _on_rulesExitButton_pressed():
 	$Rules.hide()
