@@ -8,9 +8,10 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if "Level-" in get_tree().get_current_scene().get_name():
-			$resumeButton.grab_focus()
-			set_visible(!get_tree().paused)
-			get_tree().paused = !get_tree().paused
+			if !get_tree().get_current_scene().get_node("./GameOver").is_visible():
+				$resumeButton.grab_focus()
+				set_visible(!get_tree().paused)
+				get_tree().paused = !get_tree().paused
 
 func set_visible(is_visible):
 	for node in get_children():
