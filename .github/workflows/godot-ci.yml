@@ -3,10 +3,11 @@
 # Make sure your project is configured for Web export
 # to the path `build/web`.
 
-name: 'Game to GitHub Pages'
+name: 'Godot CI'
 
 env:
   GODOT_VERSION: 3.4 # Remember to manually set image to this version below.
+  EXPORT_NAME: 'do-not-let-it-accumulate' # Name of the exported game
 
 on:
   workflow_dispatch:
@@ -14,32 +15,93 @@ on:
     types: [published]
 
 jobs:
-  deploy:
-    runs-on: ubuntu-18.04
-
+  export-windows:
+    name: Windows Export
+    runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.4
-
+      image: docker://barichello/godot-ci:3.4
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Move HTML5 templates
+        uses: actions/checkout@v1
+      - name: Setup
         run: |
-          mkdir -v -p ~/.local/share/godot/templates
+          mkdir -v -p build/linux build/windows build/mac build/web ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      - name: Create staging directory
+      - name: Windows Build
+        run: godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: windows
+          path: ./build/windows/
+
+  export-linux:
+    name: Linux Export
+    runs-on: ubuntu-latest
+    container:
+      image: docker://barichello/godot-ci:3.4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup
+        run: |
+          mkdir -v -p build/linux build/windows build/mac build/web ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Linux Build
+        run: godot -v --export "Linux/X11" ./build/linux/$EXPORT_NAME.x86_64
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: linux
+          path: ./build/linux/
+
+  export-web:
+    name: Web Export
+    runs-on: ubuntu-latest
+    container:
+      image: docker://barichello/godot-ci:3.4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup
+        run: |
+          mkdir -v -p build/linux build/windows build/mac build/web ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Staging directory
         run: mkdir -v -p build/web
-
-      - name: Build
-        run: godot -v --export "HTML5" build/web/index.html
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Web Build
+        run: godot -v --export "HTML5" ./build/web/index.html
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: web
+          path: ./build/web/
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3.7.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/web
           force_orphan: true
-          user_name: 'github-ci[bot]'
+          user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'Publish to gh-pages'
+          commit_message: 'Deploy to GitHub Pages'
+
+  export-mac:
+    name: Mac Export
+    runs-on: ubuntu-latest
+    container:
+      image: docker://barichello/godot-ci:3.4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup
+        run: |
+          mkdir -v -p build/linux build/windows build/mac build/web ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Mac Build
+        run: godot -v --export "Mac OSX" ./build/mac/$EXPORT_NAME.zip
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: mac
+          path: ./build/mac/
