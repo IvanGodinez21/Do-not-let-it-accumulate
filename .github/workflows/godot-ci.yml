@@ -1,12 +1,7 @@
-# Workflow to publish Godot HTML5 games to GitHub Pages
-#
-# Make sure your project is configured for Web export
-# to the path `build/web`.
-
 name: Godot CI
 
 env:
-  GODOT_VERSION: 3.4 # Remember to manually set image to this version below.
+  GODOT_VERSION: 3.4 # Set image to this version below.
   EXPORT_NAME: Don't-let-it-accumulate # Name of the exported game
 
 on:
